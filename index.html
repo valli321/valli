@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Naga Sai Vallika | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- Reset & base ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",sans-serif;
+      background:#fafafa;
+      color:#111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit}
+    /* ---------- Navbar ---------- */
+    .navbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 48px;
+      gap:16px;
+      background:linear-gradient(90deg,#fff,#fff);
+      position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(0,0,0,0.05);
+    }
+    .logo{font-size:22px;color:darkorange;font-weight:700}
+    .menu-bar{list-style:none;display:flex;gap:26px;align-items:center}
+    .menu-bar li{font-size:16px}
+    .menu-bar a{padding:8px 6px;border-radius:6px;transition:background 0.18s}
+    .menu-bar a:hover{background:rgba(0,0,0,0.04)}
+    /* three dots button */
+    .dots-btn{
+      background:transparent;border:none;cursor:pointer;padding:8px;border-radius:8px;
+      display:flex;align-items:center;gap:6px;
+    }
+    .dots{
+      width:6px;height:6px;border-radius:50%;background:#333;margin:2px 0;
+      box-shadow:0 8px 0 #333,0 -8px 0 #333; /* 3 vertical dots */
+      transform:scale(0.9);
+    }
+    /* dropdown for dots */
+    .dots-menu{
+      position:absolute;top:64px;right:48px;width:200px;background:#fff;border-radius:10px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);padding:10px;display:none;flex-direction:column;gap:6px;
+      z-index:60;
+    }
+    .dots-menu.show{display:flex}
+    .dots-menu a{padding:10px;border-radius:8px;color:#111;font-weight:600}
+    .dots-menu a:hover{background:linear-gradient(90deg,#fff7ed,#fff3e0);color:darkorange}
+    /* ---------- Hero / Section 1 ---------- */
+    .container{max-width:1100px;margin:30px auto;padding:0 20px}
+    .sec1{
+      display:flex;gap:40px;align-items:center;padding:36px 0;height:80vh;
+      min-height:520px;
+    }
+    .sec-1-1 img{
+      width:360px;height:360px;border-radius:50%;object-fit:cover;border:6px solid #fff;
+      box-shadow:0 10px 30px rgba(0,0,0,0.12);
+    }
+    .sec-1-2{display:flex;flex-direction:column;gap:12px}
+    .intro-small{font-weight:600}
+    h1{font-size:42px;color:darkorange;margin-top:4px}
+    .role{font-weight:600;font-size:18px}
+    .desc{font-size:16px;color:#333;max-width:760px}
+    /* buttons */
+    .btns{display:flex;gap:12px;align-items:center;margin-top:10px}
+    .btn{
+      padding:10px 18px;border-radius:999px;border:2px solid #111;background:transparent;font-weight:600;cursor:pointer;transition:all .22s;
+    }
+    .btn.primary{background:#111;color:#fff;border-color:#111}
+    .btn.primary:hover{background:darkorange;border-color:darkorange}
+    .btn:hover{transform:translateY(-2px)}
+    /* social icons */
+    .social{display:flex;gap:12px;align-items:center}
+    .social img{width:30px;height:30px;cursor:pointer;opacity:.95;transition:transform .18s}
+    .social img:hover{transform:scale(1.05)}
+    /* typed text style */
+    .typed{font-weight:700;font-size:28px;color:#222;min-height:36px}
+    .typed .cursor{display:inline-block;width:2px;background:#222;margin-left:6px;animation:blink 1s infinite}
+    @keyframes blink{50%{opacity:0}}
+    /* ---------- Sections ---------- */
+    section.page-section{padding:70px 0;border-top:1px solid rgba(0,0,0,0.04)}
+    section .section-title{font-size:24px;color:darkorange;margin-bottom:18px;font-weight:700}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{padding:18px;border-radius:12px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+    /* resume modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:120}
+    .modal-backdrop.show{display:flex}
+    .modal{
+      width:90%;max-width:900px;height:80vh;background:#fff;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;
+    }
+    .modal .modal-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(0,0,0,0.06)}
+    .modal iframe{flex:1;border:0}
+    /* contact modal smaller */
+    .contact-card{background:#fff;padding:22px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.08)}
+    /* responsive */
+    @media (max-width:880px){
+      .sec1{flex-direction:column;gap:18px;padding-top:18px;height:auto}
+      .grid{grid-template-columns:1fr}
+      .menu-bar{display:none}
+      .navbar{padding:12px 18px}
+      .dots-menu{right:18px}
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Naga Sai Vallika</div>
+    <ul class="menu-bar" id="menuBar">
+      <li><a href="#about" class="menu-link">About</a></li>
+      <li><a href="#experience" class="menu-link">Experience</a></li>
+      <li><a href="#projects" class="menu-link">Projects</a></li>
+      <li><a href="#contact" class="menu-link">Contact</a></li>
+    </ul>
+
+    <!-- three dots button (opens same-page menu) -->
+    <div style="position:relative">
+      <button class="dots-btn" id="dotsBtn" aria-expanded="false" aria-controls="dotsMenu" title="Menu">
+        <span class="dots" aria-hidden="true"></span>
+      </button>
+
+      <nav class="dots-menu" id="dotsMenu" role="menu" aria-labelledby="dotsBtn">
+        <a href="#about" class="dots-link" role="menuitem">About</a>
+        <a href="#experience" class="dots-link" role="menuitem">Experience</a>
+        <a href="#projects" class="dots-link" role="menuitem">Projects</a>
+        <a href="#contact" class="dots-link" role="menuitem">Contact</a>
+        <a href="#" id="openResumePreview" role="menuitem">Resume (Preview)</a>
+      </nav>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="sec1" id="home">
+      <div class="sec-1-1">
+        <img src="pic.jpg" alt="Naga Sai Vallika photo"/>
+      </div>
+
+      <div class="sec-1-2">
+        <span class="intro-small">Hello, I'm</span>
+        <h1>Naga Sai Vallika</h1>
+
+        <!-- typed animation area -->
+        <div class="typed" aria-live="polite" id="typedText">
+          <!-- JS will type here -->
+        </div>
+
+        <div class="role">Full Stack Developer</div>
+
+        <p class="desc">An aspiring Full Stack Developer with a strong passion for building interactive, efficient, and user-friendly web applications. I enjoy working across frontend and backend and constantly learning new tech.</p>
+
+        <div class="btns" style="margin-top:12px">
+          <a href="resume.pdf" download="Naga_Sai_Vallika_Resume.pdf" class="btn" aria-label="Download Resume"><span>Download</span></a>
+          <button class="btn primary" id="contactInfoBtn">Contact Info</button>
+          <div class="social" aria-hidden="true">
+            <img src="image.png" alt="social icon 1"/>
+            <img src="image1.png" alt="social icon 2"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="page-section">
+      <div class="section-title">About</div>
+      <div class="grid">
+        <div class="card">
+          <h3 style="margin-bottom:10px">Who I am</h3>
+          <p>I build full-stack web apps with a focus on clean UI, accessibility, and maintainable backend code. Skills: HTML, CSS, JavaScript, React, Node.js, Express, MongoDB (for example).</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:10px">Skills</h3>
+          <ul>
+            <li>Frontend: HTML, CSS, JS, React</li>
+            <li>Backend: Node.js, Express</li>
+            <li>Database: MongoDB / SQL basics</li>
+            <li>Tools: Git, VS Code</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="page-section">
+      <div class="section-title">Experience</div>
+      <div class="grid">
+        <div class="card">
+          <h4>Intern / Mini Projects</h4>
+          <p>Worked on college projects and internships building responsive web pages and small full-stack apps.</p>
+        </div>
+        <div class="card">
+          <h4>Other</h4>
+          <p>Open to internships and contributions. Keen to learn production workflows and cloud deployment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="page-section">
+      <div class="section-title">Projects</div>
+      <div class="grid">
+        <div class="card">
+          <h4>Project A</h4>
+          <p>Short description of project A — tech used and what problem it solves.</p>
+        </div>
+        <div class="card">
+          <h4>Project B</h4>
+          <p>Short description of project B — links, repo etc. (Add your repo link here)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="page-section">
+      <div class="section-title">Contact</div>
+      <div class="grid">
+        <div class="card">
+          <h4>Get in touch</h4>
+          <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+          <p>Phone: <a href="tel:+918500458926">+91 85004 58926</a></p>
+        </div>
+        <div class="card">
+          <h4>Resume</h4>
+          <p>Preview your resume (click button) or download directly from the hero section.</p>
+          <button class="btn" id="openResumePreview2">Preview Resume</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Resume modal -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="resumeTitle">
+      <div class="modal-head" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(0,0,0,0.06)">
+        <div style="display:flex;gap:12px;align-items:center">
+          <strong id="resumeTitle">Resume Preview</strong>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <a href="resume.pdf" download="Naga_Sai_Vallika_Resume.pdf" class="btn">Download</a>
+          <button class="btn" id="closeModal">Close</button>
+        </div>
+      </div>
+      <iframe src="resume.pdf#view=fit" title="Resume Preview"></iframe>
+    </div>
+  </div>
+
+  <!-- contact info small modal (non-fullscreen) -->
+  <div style="position:fixed;right:18px;bottom:18px;z-index:110" id="contactPopup" aria-hidden="true">
+    <div class="contact-card" style="display:none" id="contactCard">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <div>
+          <strong>Contact Info</strong>
+          <div style="font-size:14px;margin-top:8px">
+            <div>Phone: <a href="tel:+918500458926">+91 85004 58926</a></div>
+            <div>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></div>
+          </div>
+        </div>
+        <div>
+          <button class="btn" id="closeContact">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // ---------- Smooth scroll for all menu links (same page) ----------
+  document.querySelectorAll('.menu-link, .dots-link').forEach(el=>{
+    el.addEventListener('click', function(e){
+      const href = this.getAttribute('href');
+      if(href && href.startsWith('#')){
+        e.preventDefault();
+        document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+        // hide dots menu if open
+        toggleDots(false);
+      }
+    });
+  });
+
+  // ---------- Dots menu toggle ----------
+  const dotsBtn = document.getElementById('dotsBtn');
+  const dotsMenu = document.getElementById('dotsMenu');
+  function toggleDots(forceOpen){
+    const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !dotsMenu.classList.contains('show');
+    dotsMenu.classList.toggle('show', shouldOpen);
+    dotsBtn.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+  }
+  dotsBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    toggleDots();
+  });
+  // close on outside click
+  document.addEventListener('click', (e)=>{
+    if(!dotsMenu.contains(e.target) && e.target !== dotsBtn){
+      toggleDots(false);
+    }
+  });
+  // close on ESC
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') { toggleDots(false); closeModal(); closeContactCard(); }
+  });
+
+  // ---------- Resume modal ----------
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const openResume = document.getElementById('openResumePreview');
+  const openResume2 = document.getElementById('openResumePreview2');
+  const closeModalBtn = document.getElementById('closeModal');
+  function openModal(){ modalBackdrop.classList.add('show'); modalBackdrop.setAttribute('aria-hidden','false'); }
+  function closeModal(){ modalBackdrop.classList.remove('show'); modalBackdrop.setAttribute('aria-hidden','true'); }
+  openResume.addEventListener('click', (e)=>{ e.preventDefault(); openModal(); toggleDots(false); });
+  openResume2.addEventListener('click', (e)=>{ e.preventDefault(); openModal(); });
+  closeModalBtn.addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', (e)=>{ if(e.target === modalBackdrop) closeModal(); });
+
+  // ---------- Contact popup ----------
+  const contactInfoBtn = document.getElementById('contactInfoBtn');
+  const contactCard = document.getElementById('contactCard');
+  const closeContact = document.getElementById('closeContact');
+  function openContactCard(){ contactCard.style.display = 'block'; contactCard.setAttribute('aria-hidden','false'); }
+  function closeContactCard(){ contactCard.style.display = 'none'; contactCard.setAttribute('aria-hidden','true'); }
+  contactInfoBtn.addEventListener('click', openContactCard);
+  closeContact.addEventListener('click', closeContactCard);
+
+  // ---------- Typed text animation (simple) ----------
+  // We'll type phrases one after another
+  const typedEl = document.getElementById('typedText');
+  const phrases = [
+    "Hi, I'm Naga Sai Vallika.",
+    "Web Developer.",
+    "Full Stack Enthusiast."
+  ];
+  let phraseIndex = 0;
+  let charIndex = 0;
+  const typingSpeed = 70;
+  const pauseBetween = 900;
+
+  function typeLoop(){
+    const current = phrases[phraseIndex];
+    if(charIndex <= current.length){
+      typedEl.innerHTML = current.slice(0, charIndex) + '<span class="cursor" aria-hidden="true"></span>';
+      charIndex++;
+      setTimeout(typeLoop, typingSpeed);
+    } else {
+      // finished current phrase, pause then delete
+      setTimeout(()=>deleteLoop(), pauseBetween);
+    }
+  }
+  function deleteLoop(){
+    const current = phrases[phraseIndex];
+    if(charIndex >= 0){
+      typedEl.innerHTML = current.slice(0, charIndex) + '<span class="cursor" aria-hidden="true"></span>';
+      charIndex--;
+      setTimeout(deleteLoop, 30);
+    } else {
+      // move to next phrase
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      setTimeout(()=>typeLoop(), 220);
+    }
+  }
+  // start after small delay
+  setTimeout(typeLoop, 600);
+
+  // Accessibility: focus the first link in dots menu on open
+  dotsBtn.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowDown'){ e.preventDefault(); const first = dotsMenu.querySelector('a'); first && first.focus(); toggleDots(true);}
+  });
+
+  // close dots menu when a dots-menu link is activated by keyboard
+  dotsMenu.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') toggleDots(false);
+    });
+  });
+
+  // prevent focus trap issues when modal closed: focus back to resume button
+  closeModalBtn.addEventListener('click', ()=>{ dotsBtn.focus(); });
+
+  // small improvement: hide dots-menu when resizing from small -> large
+  window.addEventListener('resize', ()=>{ if(window.innerWidth>880) toggleDots(false); });
+
+</script>
+</body>
+</html>
